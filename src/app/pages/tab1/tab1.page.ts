@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { IPost } from 'src/app/interfaces/post.interface';
 import { PostService } from 'src/app/core/services/post.service';
 import { IPostsResponse } from 'src/app/interfaces/posts-response.interface';
+import { UserService } from 'src/app/core/services/user.service';
 
 @Component({
   selector: 'app-tab1',
@@ -9,18 +10,20 @@ import { IPostsResponse } from 'src/app/interfaces/posts-response.interface';
   styleUrls: ['tab1.page.scss']
 })
 export class Tab1Page implements OnInit {
+  
   posts: IPost[] = [];
   scrollDisabled = true;
 
   constructor(
-    private postService: PostService
+    private postService: PostService,
+    private userService: UserService
   ) {}
 
   ngOnInit(){
     this.next();
   }
 
-  reload(event){
+  reload(event: any){
     this.next(event, true);
     this.scrollDisabled = true;
       this.posts = [];
@@ -36,6 +39,10 @@ export class Tab1Page implements OnInit {
         }
       }
     });
+  }
+
+  logOut(){
+    this.userService.logout();
   }
 
 }

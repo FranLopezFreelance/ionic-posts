@@ -1,12 +1,38 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { IUser } from 'src/app/interfaces/user.interface';
+import { UserService } from 'src/app/core/services/user.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-tab3',
   templateUrl: 'tab3.page.html',
   styleUrls: ['tab3.page.scss']
 })
-export class Tab3Page {
+export class Tab3Page implements OnInit {
 
-  constructor() {}
+  updatedUser: IUser = null;
+
+  constructor(
+    private userService: UserService
+  ) { }
+
+  ngOnInit(){
+    this.updatedUser = this.userService.getUser();
+  }
+
+  selectAvatar(avatar: string){
+    this.updatedUser.avatar = avatar;
+  }
+
+  async updateUser( updateForm: NgForm){
+    if(!updateForm.valid){
+      return;
+    }
+    await this.userService.updateUser(this.updatedUser);
+  }
+
+  logOut(){
+    this.userService.logout();
+  }
 
 }

@@ -1,12 +1,18 @@
 <ion-header [translucent]="true" class="ion-no-border">
   <ion-toolbar class="ion-padding-horizontal">
     <ion-buttons slot="start">
-      <ion-icon slot="icon-only" name="camera-outline"></ion-icon>
+      <ion-icon slot="icon-only" name="add-circle-outline"></ion-icon>
     </ion-buttons>
     
     <ion-title>
       Nuevo Post
     </ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button (click)="logOut()">
+        <ion-icon slot="icon-only" name="log-out-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 

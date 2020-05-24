@@ -1,4 +1,4 @@
-import { User } from './user.interface';
+import { IUser } from './user.interface';
 
 export interface IPost {
   _id: string;
@@ -6,5 +6,5 @@ export interface IPost {
   message: string;
   images: string[];
   coords: string;
-  user: User;
+  user: IUser;
 }

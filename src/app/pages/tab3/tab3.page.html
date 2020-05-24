@@ -1,20 +1,74 @@
 <ion-header [translucent]="true" class="ion-no-border">
   <ion-toolbar class="ion-padding-horizontal">
     <ion-buttons slot="start">
-      <ion-icon slot="icon-only" name="camera-outline"></ion-icon>
+      <ion-icon slot="icon-only" name="person"></ion-icon>
     </ion-buttons>
     
     <ion-title>
-      Mi Perfil
+      Modificar Perfil
     </ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button (click)="logOut()">
+        <ion-icon slot="icon-only" name="log-out-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 3</ion-title>
-    </ion-toolbar>
-  </ion-header>
 
+  <ion-row class="top-20" *ngIf="updatedUser"> 
+    <ion-col size="12" class="ion-text-center">
+      <img src="assets/avatars/{{updatedUser.avatar}}" class="img-avatar">
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col class="ionic-text-center">
+      <ion-spinner *ngIf="!updatedUser" name="dots"></ion-spinner>
+    </ion-col>
+  </ion-row>
+
+  <app-select-avatar 
+    [currentAvatar]=updatedUser.avatar
+    (selectedAvatar)="selectAvatar($event)">
+  </app-select-avatar>
+  
+
+  <form *ngIf="updatedUser" (ngSubmit)="updateUser(updateForm)" #updateForm="ngForm">
+    <ion-row>
+      <ion-col>
+          <ion-list>
+            <ion-item>
+              <ion-label>Email</ion-label>
+              <ion-input name="email"
+                         type="email"
+                         [(ngModel)]="updatedUser.email"
+                         required></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label>Nombre</ion-label>
+              <ion-input name="name"
+                         type="text"
+                         [(ngModel)]="updatedUser.name"
+                         required></ion-input>
+            </ion-item>
+          </ion-list>
+      </ion-col>
+    </ion-row>
+    
+    <ion-row>
+      <ion-col class="ion-text-center">
+        <ion-button type="submit"
+                    color="tertiary"
+                    shape="round">
+        Actualizar
+      </ion-button>
+    </ion-col>
+  </ion-row>
+</form>
 </ion-content>
+
+
