@@ -10,7 +10,7 @@
       </ion-text>
     </ion-label>
   </ion-item>
-  <ion-slides pager="true">
+  <!-- <ion-slides pager="true">
     <ion-slide class="image-slide" 
       [style]=" imgUrl1 | domSanitizer">
     </ion-slide>
@@ -20,7 +20,10 @@
     <ion-slide class="image-slide" 
       [style]=" imgUrl3 | domSanitizer">
     </ion-slide>
-  </ion-slides>
+  </ion-slides> -->
+  <app-map [coords]="post.coords">
+
+  </app-map>
   <ion-item lines="none">
     <ion-icon slot="start" name="heart-outline"></ion-icon>
     <ion-icon slot="end" name="bookmark"></ion-icon>

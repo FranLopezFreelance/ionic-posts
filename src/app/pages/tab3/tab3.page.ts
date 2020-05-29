@@ -11,7 +11,7 @@ import { NgForm } from '@angular/forms';
 export class Tab3Page implements OnInit {
 
   updatedUser: IUser = null;
-
+  edit: boolean = false;
   constructor(
     private userService: UserService
   ) { }
@@ -29,10 +29,14 @@ export class Tab3Page implements OnInit {
       return;
     }
     await this.userService.updateUser(this.updatedUser);
+    this.setEdit(false);
   }
 
   logOut(){
     this.userService.logout();
   }
 
+  setEdit(value: boolean){
+    this.edit = value;
+  }
 }

@@ -5,7 +5,7 @@
     </ion-buttons>
     
     <ion-title>
-      Modificar Perfil
+      Ver/Editar Perfil
     </ion-title>
 
     <ion-buttons slot="end">
@@ -18,7 +18,7 @@
 
 <ion-content [fullscreen]="true">
 
-  <ion-row class="top-20" *ngIf="updatedUser"> 
+  <ion-row class="top-20" *ngIf="updatedUser && !edit"> 
     <ion-col size="12" class="ion-text-center">
       <img src="assets/avatars/{{updatedUser.avatar}}" class="img-avatar">
     </ion-col>
@@ -31,12 +31,13 @@
   </ion-row>
 
   <app-select-avatar 
+    *ngIf="updatedUser && edit"
     [currentAvatar]=updatedUser.avatar
     (selectedAvatar)="selectAvatar($event)">
   </app-select-avatar>
   
 
-  <form *ngIf="updatedUser" (ngSubmit)="updateUser(updateForm)" #updateForm="ngForm">
+  <form *ngIf="updatedUser && edit" (ngSubmit)="updateUser(updateForm)" #updateForm="ngForm">
     <ion-row>
       <ion-col>
           <ion-list>
@@ -58,17 +59,41 @@
           </ion-list>
       </ion-col>
     </ion-row>
-    
     <ion-row>
+      <ion-col class="ion-text-center">
+        <ion-button color="medium"
+                    shape="round"
+                    (click)="setEdit(false)">
+          Cancelar
+        </ion-button>
+      </ion-col>
       <ion-col class="ion-text-center">
         <ion-button type="submit"
                     color="tertiary"
                     shape="round">
-        Actualizar
-      </ion-button>
-    </ion-col>
+          Guardar
+        </ion-button>
+      </ion-col>
   </ion-row>
 </form>
+
+<ion-row *ngIf="!edit">
+  <ion-col class="ion-padding">
+    <ion-list>
+      <ion-item><b>Email: </b> {{ updatedUser.email }}</ion-item>
+      <ion-item><b>Nombre: </b> {{ updatedUser.name }}</ion-item>
+    </ion-list>
+  </ion-col>
+</ion-row>
+<ion-row *ngIf="!edit">
+  <ion-col class="ion-text-center">
+    <ion-button  color="tertiary"
+                shape="round"
+                (click)="setEdit(true)">
+      Editar
+    </ion-button>
+  </ion-col>
+</ion-row>
 </ion-content>
 
 

@@ -12,7 +12,7 @@ import { NavController } from '@ionic/angular';
 export class UserService {
 
   private path_url: string = environment.path_url;
-  private token: string = null;
+  token: string = null;
   private user: IUser = null;
   
   

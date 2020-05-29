@@ -11,13 +11,15 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { HttpClientModule } from '@angular/common/http';
 import { IonicStorageModule } from '@ionic/storage';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { Camera } from '@ionic-native/camera/ngx';
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
   imports: [ BrowserModule, IonicModule.forRoot(), AppRoutingModule, 
     CoreModule, HttpClientModule, IonicStorageModule.forRoot() ],
-  providers: [ StatusBar, SplashScreen,
+  providers: [ StatusBar, SplashScreen, Geolocation, Camera,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     /* { provide: HTTP_INTERCEPTORS, useClass: Authorization, multi: true } */
   ],

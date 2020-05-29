@@ -5,7 +5,7 @@
 </ion-row>
 <ion-row>
   <ion-col>
-      <ion-slides [options]="avatarSlide">
+      <ion-slides [options]="avatarSlide" #avatarsSlide>
         <ion-slide *ngFor="let avatar of avatars" class="ion-text-center">
           <ion-img class="pick-avatar" 
                   src="/assets/avatars/{{avatar.img}}"
